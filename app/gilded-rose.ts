@@ -35,14 +35,13 @@ export class GildedRose {
       item.quality = 80;
     }
     var degradeRate:number = item.name.includes(Conjured) ? -2 : -1;
+    var doesDegrade:boolean = item.name != AgedBrie && item.name != BackstagePass && item.name != Sulfuras;
 
-    if (item.name != AgedBrie && item.name != BackstagePass) {
+    if (doesDegrade) {
+      this.changeQuality(degradeRate, item)
+    }
 
-      if (item.name != Sulfuras) {
-        this.changeQuality(degradeRate, item)
-      }
-    } else {
-
+    if (item.name == AgedBrie || item.name == BackstagePass) {
       this.changeQuality(1, item)
       if (item.name == BackstagePass) {
         if (item.sellIn < 11) {
@@ -52,7 +51,8 @@ export class GildedRose {
           this.changeQuality(1, item)
         }
       }
-    }
+    } 
+    
     if (item.name != Sulfuras) {
       item.sellIn = item.sellIn - 1;
     }
