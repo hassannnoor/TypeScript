@@ -9,7 +9,7 @@ export class Item {
     this.quality = quality;
   }
 }
-const AgedBrie = 'Aged Brie1';
+const AgedBrie = 'Aged Brie';
 const BackstagePass = 'Backstage passes to a TAFKAL80ETC concert';
 const Sulfuras = 'Sulfuras, Hand of Ragnaros';
 
