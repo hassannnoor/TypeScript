@@ -40,22 +40,17 @@ export class GildedRose {
 
       if (item.name != Sulfuras) {
         this.changeQuality(degradeRate, item)
-
       }
     } else {
 
       this.changeQuality(1, item)
       if (item.name == BackstagePass) {
         if (item.sellIn < 11) {
-
           this.changeQuality(1, item)
         }
         if (item.sellIn < 6) {
-
           this.changeQuality(1, item)
-
         }
-
       }
     }
     if (item.name != Sulfuras) {
@@ -73,9 +68,7 @@ export class GildedRose {
           item.quality = item.quality - item.quality
         }
       } else {
-
         this.changeQuality(1, item)
-
       }
     }
   }
