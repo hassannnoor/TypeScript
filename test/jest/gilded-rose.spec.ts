@@ -27,6 +27,55 @@ describe('Gilded Rose', () => {
     var AgedBrie = new Item ('Aged Brie',2,50);
     expect(items[0]).toEqual(AgedBrie);
   });
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  test('Backstage passes to a TAFKAL80ETC concert increases by 1 when days are greater by 10',() =>{
+    const gildedRose = new GildedRose([new Item('Backstage passes to a TAFKAL80ETC concert', 11, 2)]);
+    const items = gildedRose.updateQuality();
+    var AgedBrie = new Item ('Backstage passes to a TAFKAL80ETC concert',10,3);
+    expect(items[0]).toEqual(AgedBrie);
+  });
+
+  test('Backstage passes to a TAFKAL80ETC concert increases by 2 when days are less than or eq by 10',() =>{
+    const gildedRose = new GildedRose([new Item('Backstage passes to a TAFKAL80ETC concert', 10, 2)]);
+    const items = gildedRose.updateQuality();
+    var AgedBrie = new Item ('Backstage passes to a TAFKAL80ETC concert',9,4);
+    expect(items[0]).toEqual(AgedBrie);
+  });
+
+  test('Backstage passes to a TAFKAL80ETC concert increases by 3 when days are less than or eq by 5',() =>{
+    const gildedRose = new GildedRose([new Item('Backstage passes to a TAFKAL80ETC concert', 5, 2)]);
+    const items = gildedRose.updateQuality();
+    var AgedBrie = new Item ('Backstage passes to a TAFKAL80ETC concert',4,5);
+    expect(items[0]).toEqual(AgedBrie);
+  });
+
+  test('Backstage passes to a TAFKAL80ETC concert becomes 0 when days left are 0',() =>{
+    const gildedRose = new GildedRose([new Item('Backstage passes to a TAFKAL80ETC concert', 0, 20)]);
+    const items = gildedRose.updateQuality();
+    var AgedBrie = new Item ('Backstage passes to a TAFKAL80ETC concert',-1,0);
+    expect(items[0]).toEqual(AgedBrie);
+  });
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////
+  test('Sulfuras',() =>{
+    const gildedRose = new GildedRose([new Item('Sulfuras, Hand of Ragnaros', 80, 100)]);
+    const items = gildedRose.updateQuality();
+    var AgedBrie = new Item ('Sulfuras, Hand of Ragnaros',80,80);
+    expect(items[0]).toEqual(AgedBrie);
+  });
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+test('Conjured item decrease twice in quality',() =>{
+  const gildedRose = new GildedRose([new Item('Conjured Mana Cake', 3, 6)]);
+  const items = gildedRose.updateQuality();
+  var Conjured = new Item ('Conjured Mana Cake',2,4);
+  expect(items[0]).toEqual(Conjured);
+});
+
+test('Conjured item decrease 4 times in quality if passed thier sell date',() =>{
+  const gildedRose = new GildedRose([new Item('Conjured Mana Cake', 0, 6)]);
+  const items = gildedRose.updateQuality();
+  var Conjured = new Item ('Conjured Mana Cake',-1,2);
+  expect(items[0]).toEqual(Conjured);
+});
 
 });
 

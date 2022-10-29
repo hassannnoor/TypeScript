@@ -12,6 +12,7 @@ export class Item {
 const AgedBrie = 'Aged Brie';
 const BackstagePass = 'Backstage passes to a TAFKAL80ETC concert';
 const Sulfuras = 'Sulfuras, Hand of Ragnaros';
+const Conjured = 'Conjured';
 
 export class GildedRose {
   items: Array<Item>;
@@ -28,10 +29,17 @@ export class GildedRose {
     return this.items;
   }
   updateItems(item: Item) {
+    //Sulfuras quality (80)
+    if(item.name == Sulfuras)
+    {
+      item.quality = 80;
+    }
+    var degradeRate:number = item.name.includes(Conjured) ? -2 : -1;
+
     if (item.name != AgedBrie && item.name != BackstagePass) {
 
       if (item.name != Sulfuras) {
-        this.changeQuality(-1, item)
+        this.changeQuality(degradeRate, item)
 
       }
     } else {
@@ -58,7 +66,7 @@ export class GildedRose {
         if (item.name != BackstagePass) {
 
           if (item.name != Sulfuras) {
-            this.changeQuality(-1, item)
+            this.changeQuality(degradeRate, item)
           }
 
         } else {
