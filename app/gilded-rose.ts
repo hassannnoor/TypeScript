@@ -41,18 +41,21 @@ export class GildedRose {
       this.changeQuality(degradeRate, item)
     }
 
-    if (item.name == AgedBrie || item.name == BackstagePass) {
+    if (item.name == AgedBrie) {
       this.changeQuality(1, item)
-      if (item.name == BackstagePass) {
-        if (item.sellIn < 11) {
-          this.changeQuality(1, item)
-        }
-        if (item.sellIn < 6) {
-          this.changeQuality(1, item)
-        }
-      }
     } 
-    
+
+    if (item.name == BackstagePass) {
+      this.changeQuality(1, item)
+      
+      if (item.sellIn < 11) {
+        this.changeQuality(1, item)
+      }
+      if (item.sellIn < 6) {
+        this.changeQuality(1, item)
+      }
+    }
+
     if (item.name != Sulfuras) {
       item.sellIn = item.sellIn - 1;
     }
