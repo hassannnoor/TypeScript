@@ -29,26 +29,25 @@ export class GildedRose {
   }
   updateItems(item: Item) {
     if (item.name != AgedBrie && item.name != BackstagePass) {
-      if (item.quality > 0) {
-        if (item.name != Sulfuras) {
-          item.quality = item.quality - 1
-        }
+
+      if (item.name != Sulfuras) {
+        this.changeQuality(-1, item)
+
       }
     } else {
-      if (item.quality < 50) {
-        item.quality = item.quality + 1
-        if (item.name == BackstagePass) {
-          if (item.sellIn < 11) {
-            if (item.quality < 50) {
-              item.quality = item.quality + 1
-            }
-          }
-          if (item.sellIn < 6) {
-            if (item.quality < 50) {
-              item.quality = item.quality + 1
-            }
-          }
+
+      this.changeQuality(1, item)
+      if (item.name == BackstagePass) {
+        if (item.sellIn < 11) {
+
+          this.changeQuality(1, item)
         }
+        if (item.sellIn < 6) {
+
+          this.changeQuality(1, item)
+
+        }
+
       }
     }
     if (item.name != Sulfuras) {
@@ -57,19 +56,26 @@ export class GildedRose {
     if (item.sellIn < 0) {
       if (item.name != AgedBrie) {
         if (item.name != BackstagePass) {
-          if (item.quality > 0) {
-            if (item.name != Sulfuras) {
-              item.quality = item.quality - 1
-            }
+
+          if (item.name != Sulfuras) {
+            this.changeQuality(-1, item)
           }
+
         } else {
           item.quality = item.quality - item.quality
         }
       } else {
-        if (item.quality < 50) {
-          item.quality = item.quality + 1
-        }
+
+        this.changeQuality(1, item)
+
       }
+    }
+  }
+  changeQuality(change: number, item: Item) {
+    var updatedQuality = item.quality + change;
+    //Check the range If in range, update quailty
+    if (updatedQuality <= 50 && updatedQuality >= 0) {
+      item.quality = updatedQuality;
     }
   }
 }
