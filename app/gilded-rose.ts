@@ -47,7 +47,7 @@ export class GildedRose {
 
     if (item.name == BackstagePass) {
       this.changeQuality(1, item)
-      
+
       if (item.sellIn < 11) {
         this.changeQuality(1, item)
       }
@@ -60,19 +60,15 @@ export class GildedRose {
       item.sellIn = item.sellIn - 1;
     }
     if (item.sellIn < 0) {
-      if (item.name != AgedBrie) {
-        if (item.name != BackstagePass) {
-
-          if (item.name != Sulfuras) {
-            this.changeQuality(degradeRate, item)
-          }
-
-        } else {
-          item.quality = item.quality - item.quality
-        }
-      } else {
-        this.changeQuality(1, item)
+      if(doesDegrade){
+        this.changeQuality(degradeRate,item)
       }
+      if(item.name == AgedBrie)
+      {
+        this.changeQuality(1,item)
+      } else if (item.name == BackstagePass){
+        item.quality = item.quality - item.quality
+      }  
     }
   }
   changeQuality(change: number, item: Item) {
